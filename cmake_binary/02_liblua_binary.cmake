@@ -1,0 +1,38 @@
+add_library(liblua STATIC
+    "${SKYNET_ROOT}/3rd/lua/lapi.c"
+    "${SKYNET_ROOT}/3rd/lua/lcode.c"
+    "${SKYNET_ROOT}/3rd/lua/lctype.c"
+    "${SKYNET_ROOT}/3rd/lua/ldebug.c"
+    "${SKYNET_ROOT}/3rd/lua/ldo.c"
+    "${SKYNET_ROOT}/3rd/lua/ldump.c"
+    "${SKYNET_ROOT}/3rd/lua/lfunc.c"
+    "${SKYNET_ROOT}/3rd/lua/lgc.c"
+    "${SKYNET_ROOT}/3rd/lua/llex.c"
+    "${SKYNET_ROOT}/3rd/lua/lmem.c"
+    "${SKYNET_ROOT}/3rd/lua/lobject.c"
+    "${SKYNET_ROOT}/3rd/lua/lopcodes.c"
+    "${SKYNET_ROOT}/3rd/lua/lparser.c"
+    "${SKYNET_ROOT}/3rd/lua/lstate.c"
+    "${SKYNET_ROOT}/3rd/lua/lstring.c"
+    "${SKYNET_ROOT}/3rd/lua/ltable.c"
+    "${SKYNET_ROOT}/3rd/lua/ltm.c"
+    "${SKYNET_ROOT}/3rd/lua/lundump.c"
+    "${SKYNET_ROOT}/3rd/lua/lvm.c"
+    "${SKYNET_ROOT}/3rd/lua/lzio.c"
+    "${SKYNET_ROOT}/3rd/lua/lauxlib.c"
+    "${SKYNET_ROOT}/3rd/lua/lbaselib.c"
+    "${SKYNET_ROOT}/3rd/lua/lcorolib.c"
+    "${SKYNET_ROOT}/3rd/lua/ldblib.c"
+    "${SKYNET_ROOT}/3rd/lua/liolib.c"
+    "${SKYNET_ROOT}/3rd/lua/lmathlib.c"
+    "${SKYNET_ROOT}/3rd/lua/loadlib.c"
+    "${SKYNET_ROOT}/3rd/lua/loslib.c"
+    "${SKYNET_ROOT}/3rd/lua/lstrlib.c"
+    "${SKYNET_ROOT}/3rd/lua/ltablib.c"
+    "${SKYNET_ROOT}/3rd/lua/lutf8lib.c"
+    "${SKYNET_ROOT}/3rd/lua/linit.c"
+)
+
+skynet_apply_common(liblua)
+target_include_directories(liblua PUBLIC "${SKYNET_ROOT}/3rd/lua")
+skynet_set_archive_output(liblua lua "${SKYNET_LUA_OUTPUT_DIR}")
