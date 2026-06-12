@@ -1,4 +1,4 @@
-add_library(luaclib_lpeg MODULE
+add_library(lpeg MODULE
     "${SKYNET_ROOT}/3rd/lpeg/lpcap.c"
     "${SKYNET_ROOT}/3rd/lpeg/lpcode.c"
     "${SKYNET_ROOT}/3rd/lpeg/lpprint.c"
@@ -7,4 +7,4 @@ add_library(luaclib_lpeg MODULE
     "${SKYNET_ROOT}/3rd/lpeg/lpcset.c"
 )
 
-skynet_configure_module(luaclib_lpeg lpeg "${SKYNET_LUACLIB_OUTPUT_DIR}")
+skynet_configure_module(lpeg lpeg "${SKYNET_LUACLIB_OUTPUT_DIR}")

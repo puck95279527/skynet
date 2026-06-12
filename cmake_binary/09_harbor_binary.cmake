@@ -1,5 +1,5 @@
-add_library(cservice_harbor MODULE
+add_library(harbor MODULE
     "${SKYNET_ROOT}/service-src/service_harbor.c"
 )
 
-skynet_configure_module(cservice_harbor harbor "${SKYNET_CSERVICE_OUTPUT_DIR}")
+skynet_configure_module(harbor harbor "${SKYNET_CSERVICE_OUTPUT_DIR}")

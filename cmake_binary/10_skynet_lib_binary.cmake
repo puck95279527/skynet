@@ -1,4 +1,4 @@
-add_library(luaclib_skynet MODULE
+add_library(skynet_lib MODULE
     "${SKYNET_ROOT}/lualib-src/lua-skynet.c"
     "${SKYNET_ROOT}/lualib-src/lua-seri.c"
     "${SKYNET_ROOT}/lualib-src/lua-socket.c"
@@ -16,4 +16,4 @@ add_library(luaclib_skynet MODULE
     "${SKYNET_ROOT}/lualib-src/lua-sharetable.c"
 )
 
-skynet_configure_module(luaclib_skynet skynet "${SKYNET_LUACLIB_OUTPUT_DIR}")
+skynet_configure_module(skynet_lib skynet "${SKYNET_LUACLIB_OUTPUT_DIR}")

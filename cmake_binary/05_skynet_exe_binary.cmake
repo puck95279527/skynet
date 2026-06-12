@@ -1,4 +1,4 @@
-add_executable(skynet_exe
+add_executable(skynet
     "${SKYNET_ROOT}/skynet-src/skynet_main.c"
     "${SKYNET_ROOT}/skynet-src/skynet_handle.c"
     "${SKYNET_ROOT}/skynet-src/skynet_module.c"
@@ -18,10 +18,10 @@ add_executable(skynet_exe
     "${SKYNET_ROOT}/skynet-src/skynet_log.c"
 )
 
-skynet_apply_common(skynet_exe)
-target_link_libraries(skynet_exe PRIVATE
+skynet_apply_common(skynet)
+target_link_libraries(skynet PRIVATE
     liblua
     skynet_jemalloc
     skynet_platform_libs
 )
-skynet_set_runtime_output(skynet_exe skynet "${SKYNET_EXE_OUTPUT_DIR}")
+skynet_set_runtime_output(skynet skynet "${SKYNET_EXE_OUTPUT_DIR}")
