@@ -114,3 +114,22 @@ include(cmake_binary/13_md5_binary.cmake)
 include(cmake_binary/14_sproto_binary.cmake)
 include(cmake_binary/15_lpeg_binary.cmake)
 include(cmake_binary/16_ltls_binary.cmake)
+
+add_dependencies(skynet
+    lua
+    luac
+    snlua
+    logger
+    gate
+    harbor
+    skynet_lib
+    client
+    bson
+    md5
+    sproto
+    lpeg
+)
+
+if(TARGET ltls)
+    add_dependencies(skynet ltls)
+endif()
