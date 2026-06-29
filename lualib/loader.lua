@@ -5,7 +5,7 @@ end
 
 SERVICE_NAME = args[1]
 
-local main, pattern
+local main, service_path
 
 local err = {}
 for pat in string.gmatch(LUA_SERVICE, "([^;]+);*") do
@@ -14,7 +14,7 @@ for pat in string.gmatch(LUA_SERVICE, "([^;]+);*") do
 	if not f then
 		table.insert(err, msg)
 	else
-		pattern = pat
+		service_path = string.match(filename, "(.*/).+$")
 		main = f
 		break
 	end
@@ -28,15 +28,9 @@ LUA_SERVICE = nil
 package.path , LUA_PATH = LUA_PATH, nil
 package.cpath , LUA_CPATH = LUA_CPATH, nil
 
-local service_path = string.match(pattern, "(.*/)[^/?]+$")
-
 if service_path then
-	service_path = string.gsub(service_path, "?", args[1])
 	package.path = service_path .. "?.lua;" .. package.path
 	SERVICE_PATH = service_path
-else
-	local p = string.match(pattern, "(.*/).+$")
-	SERVICE_PATH = p
 end
 
 if LUA_PRELOAD then

@@ -10,11 +10,12 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 option(SKYNET_ENABLE_TLS "Build ltls module" OFF)
 
 set(SKYNET_ROOT "${CMAKE_CURRENT_SOURCE_DIR}")
-set(SKYNET_EXE_OUTPUT_DIR "${SKYNET_ROOT}")
-set(SKYNET_CSERVICE_OUTPUT_DIR "${SKYNET_ROOT}/cservice")
-set(SKYNET_LUACLIB_OUTPUT_DIR "${SKYNET_ROOT}/luaclib")
+set(SKYNET_PUBLISH_DIR "${SKYNET_ROOT}/publish")
+set(SKYNET_EXE_OUTPUT_DIR "${SKYNET_PUBLISH_DIR}")
+set(SKYNET_CSERVICE_OUTPUT_DIR "${SKYNET_PUBLISH_DIR}/lib/cservice")
+set(SKYNET_LUACLIB_OUTPUT_DIR "${SKYNET_PUBLISH_DIR}/lib/luaclib")
 set(SKYNET_LUA_SOURCE_DIR "${SKYNET_ROOT}/3rd/lua-x")
-set(SKYNET_LUA_OUTPUT_DIR "${SKYNET_LUA_SOURCE_DIR}")
+set(SKYNET_LUA_OUTPUT_DIR "${SKYNET_PUBLISH_DIR}/3rd/lua-x")
 
 find_package(Threads REQUIRED)
 
@@ -134,3 +135,24 @@ add_dependencies(skynet
 if(TARGET ltls)
     add_dependencies(skynet ltls)
 endif()
+
+add_custom_target(publish_lua_sources
+    COMMAND ${CMAKE_COMMAND} -E make_directory "${SKYNET_PUBLISH_DIR}"
+    COMMAND ${CMAKE_COMMAND} -E rm -rf
+        "${SKYNET_PUBLISH_DIR}/examples"
+        "${SKYNET_PUBLISH_DIR}/lualib"
+        "${SKYNET_PUBLISH_DIR}/service"
+        "${SKYNET_PUBLISH_DIR}/test"
+        "${SKYNET_PUBLISH_DIR}/cservice"
+        "${SKYNET_PUBLISH_DIR}/luaclib"
+        "${SKYNET_PUBLISH_DIR}/lua"
+    COMMAND ${CMAKE_COMMAND} -E make_directory "${SKYNET_PUBLISH_DIR}/lua"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${SKYNET_ROOT}/examples" "${SKYNET_PUBLISH_DIR}/lua/examples"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${SKYNET_ROOT}/lualib" "${SKYNET_PUBLISH_DIR}/lua/lualib"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${SKYNET_ROOT}/service" "${SKYNET_PUBLISH_DIR}/lua/service"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${SKYNET_ROOT}/test" "${SKYNET_PUBLISH_DIR}/lua/test"
+    COMMENT "Copy Lua runtime sources and examples into publish"
+    VERBATIM
+)
+
+add_dependencies(skynet publish_lua_sources)
