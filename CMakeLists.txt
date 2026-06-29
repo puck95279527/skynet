@@ -101,9 +101,8 @@ function(skynet_configure_module target output_name output_dir)
 endfunction()
 
 include(cmake_binary/01_libjemalloc_pic_binary.cmake)
-include(cmake_binary/02_liblua_binary.cmake)
-include(cmake_binary/03_lua_binary.cmake)
-include(cmake_binary/04_luac_binary.cmake)
+include(cmake_binary/88_lua_x_runtime_binary.cmake)
+include(cmake_binary/89_lua_x_compiler_binary.cmake)
 include(cmake_binary/05_skynet_exe_binary.cmake)
 include(cmake_binary/06_snlua_binary.cmake)
 include(cmake_binary/07_logger_binary.cmake)
@@ -118,8 +117,8 @@ include(cmake_binary/15_lpeg_binary.cmake)
 include(cmake_binary/16_ltls_binary.cmake)
 
 add_dependencies(skynet
-    lua
-    luac
+    lua-x-runtime
+    lua-x-compiler
     snlua
     logger
     gate
@@ -155,4 +154,14 @@ add_custom_target(publish_lua_sources
     VERBATIM
 )
 
+add_custom_target(publish_lua_bytecode
+    COMMAND "${SKYNET_ROOT}/tools/compile_lua_bytecode.sh"
+    DEPENDS publish_lua_sources
+    WORKING_DIRECTORY "${SKYNET_ROOT}"
+    COMMENT "Compile Lua sources into publish/lua-bytecode"
+    VERBATIM
+)
+add_dependencies(publish_lua_bytecode lua-x-compiler)
+
 add_dependencies(skynet publish_lua_sources)
+add_dependencies(skynet publish_lua_bytecode)

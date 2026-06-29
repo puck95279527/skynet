@@ -19,7 +19,7 @@ add_executable(skynet
 
 skynet_apply_common(skynet)
 target_link_libraries(skynet PRIVATE
-    liblua
+    lua_x_runtime
     skynet_jemalloc
     skynet_platform_libs
 )

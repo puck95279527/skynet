@@ -83,7 +83,7 @@ int sigign() {
 	return 0;
 }
 
-#define SKYNET_CONFIG_LOADER "lua/lualib/skynet/configloader.lua"
+#define SKYNET_CONFIG_LOADER "lua-bytecode/lualib/skynet/configloader.luac"
 
 int
 main(int argc, char *argv[]) {
@@ -111,7 +111,7 @@ main(int argc, char *argv[]) {
 	struct lua_State *L = luaL_newstate();
 	luaL_openlibs(L);	// link lua lib
 
-	int err = luaL_loadfilex(L, SKYNET_CONFIG_LOADER, "t");
+	int err = luaL_loadfilex(L, SKYNET_CONFIG_LOADER, "b");
 	if (err != LUA_OK) {
 		fprintf(stderr, "Can't load config loader %s : %s\n", SKYNET_CONFIG_LOADER, lua_tostring(L, -1));
 		lua_close(L);

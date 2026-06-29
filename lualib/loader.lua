@@ -29,7 +29,7 @@ package.path , LUA_PATH = LUA_PATH, nil
 package.cpath , LUA_CPATH = LUA_CPATH, nil
 
 if service_path then
-	package.path = service_path .. "?.lua;" .. package.path
+	package.path = service_path .. "?.luac;" .. service_path .. "?.lua;" .. package.path
 	SERVICE_PATH = service_path
 end
 

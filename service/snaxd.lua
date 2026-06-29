@@ -9,7 +9,7 @@ local loaderpath = skynet.getenv"snax_loader"
 local loader = loaderpath and assert(dofile(loaderpath))
 local func, pattern = snax_interface(snax_name, _ENV, loader)
 local snax_path = pattern:sub(1,pattern:find("?", 1, true)-1) .. snax_name ..  "/"
-package.path = snax_path .. "?.lua;" .. package.path
+package.path = snax_path .. "?.luac;" .. snax_path .. "?.lua;" .. package.path
 
 SERVICE_NAME = snax_name
 SERVICE_PATH = snax_path
