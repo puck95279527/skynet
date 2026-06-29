@@ -1,5 +1,5 @@
 add_executable(lua
-    "${SKYNET_ROOT}/3rd/lua/lua.c"
+    "${SKYNET_LUA_SOURCE_DIR}/lua.c"
 )
 
 skynet_apply_common(lua)

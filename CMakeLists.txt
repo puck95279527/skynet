@@ -13,14 +13,15 @@ set(SKYNET_ROOT "${CMAKE_CURRENT_SOURCE_DIR}")
 set(SKYNET_EXE_OUTPUT_DIR "${SKYNET_ROOT}")
 set(SKYNET_CSERVICE_OUTPUT_DIR "${SKYNET_ROOT}/cservice")
 set(SKYNET_LUACLIB_OUTPUT_DIR "${SKYNET_ROOT}/luaclib")
-set(SKYNET_LUA_OUTPUT_DIR "${SKYNET_ROOT}/3rd/lua")
+set(SKYNET_LUA_SOURCE_DIR "${SKYNET_ROOT}/3rd/lua-x")
+set(SKYNET_LUA_OUTPUT_DIR "${SKYNET_LUA_SOURCE_DIR}")
 
 find_package(Threads REQUIRED)
 
 add_library(skynet_common_options INTERFACE)
 target_compile_options(skynet_common_options INTERFACE -g -O2 -Wall)
 target_include_directories(skynet_common_options INTERFACE
-    "${SKYNET_ROOT}/3rd/lua"
+    "${SKYNET_LUA_SOURCE_DIR}"
     "${SKYNET_ROOT}/skynet-src"
     "${SKYNET_ROOT}/service-src"
     "${SKYNET_ROOT}/lualib-src"
